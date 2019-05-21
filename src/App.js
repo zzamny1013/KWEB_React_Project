@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import StyledComponent from './components/menubutton.js';
 import './App.css';
+import gook1 from './gook1.jpg';
+import './components/menuimage.css';
 
-function App() {
-  return (
+class App extends Component{
+
+  state = {
+    input: '',
+    booking: [
+
+    ],
+  }
+
+  handleChange = (e) =>{
+    this.setState({
+      input: e.target.value
+    });
+  }
+
+  handleMenuChange = () =>{
+
+  }
+
+  handleBookingCreate = () =>{
+
+  }
+
+  handleKeyPress = (e) => {
+    if(e.key === 'Enter') {
+      this.handleBookingCreate();
+    }
+  }
+
+  handleBookingRemove = () =>{
+
+  }
+
+  render(){
+    return(
+    <fragment>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <StyledComponent/>
     </div>
-  );
+    <img className="image" src={gook1} alt="뼈해장국"/>
+    <img className="image" src={gook1} alt="뼈해장국"/>
+    <img className="image" src={gook1} alt="뼈해장국"/>
+    <img className="image" src={gook1} alt="뼈해장국"/>
+    <img className="image" src={gook1} alt="뼈해장국"/>
+    </fragment> 
+    );
+  }
 }
 
 export default App;
