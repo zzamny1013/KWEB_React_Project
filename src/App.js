@@ -1,56 +1,45 @@
-import React, { Component } from 'react';
-import StyledComponent from './components/menubutton.js';
+import React, { useReducer } from 'react';
 import './App.css';
 import gook1 from './gook1.jpg';
-import './components/menuimage.css';
 
-class App extends Component{
-
-  state = {
-    input: '',
-    booking: [
-
-    ],
+function reducer(state, action){
+  switch(action.type){
+    case 'INTRODUCE':
+      console.log(state.introducev);
+      return { ...state, [state.introducev]: !state.introducev};
+    case 'MENU':
+      return { ...state, [state.menuv]: !state.menuv};
+    case 'BOOK':
+      return { ...state, [state.bookv]: !state.bookv};
+    case 'PROMOTION':
+      return { ...state, [state.promotionv]: !state.promotionv};
+    default:
+      return state;
   }
+}
 
-  handleChange = (e) =>{
-    this.setState({
-      input: e.target.value
-    });
-  }
 
-  handleMenuChange = () =>{
+function App(){
+  const [state, dispatch] = useReducer(reducer, {
+    introducev: true,
+    menuv: false,
+    bookv: false,
+    promotionv: false
+  });
 
-  }
+  return(
+    <div>
+      <img className='logo' src={gook1} alt='logo'/>
+      <div className='menubar'>
+        <button className='menubarButton' onClick={()=>{dispatch({ type: 'INTRODUCE'})}}>소개</button>
+        <button className='menubarButton'>메뉴</button>
+        <button className='menubarButton'>예약</button>
+        <button className='menubarButton'>프로모션</button>
+      </div>
+      {state.introducev && <img src='./intro.jpg' alt='intro'/>}
 
-  handleBookingCreate = () =>{
-
-  }
-
-  handleKeyPress = (e) => {
-    if(e.key === 'Enter') {
-      this.handleBookingCreate();
-    }
-  }
-
-  handleBookingRemove = () =>{
-
-  }
-
-  render(){
-    return(
-    <fragment>
-    <div className="App">
-      <StyledComponent/>
     </div>
-    <img className="image" src={gook1} alt="뼈해장국"/>
-    <img className="image" src={gook1} alt="뼈해장국"/>
-    <img className="image" src={gook1} alt="뼈해장국"/>
-    <img className="image" src={gook1} alt="뼈해장국"/>
-    <img className="image" src={gook1} alt="뼈해장국"/>
-    </fragment> 
-    );
-  }
+  );
 }
 
 export default App;

@@ -31,3 +31,21 @@
     transform: rotate(360deg);
   }
 }
+
+.menubar{
+  background-color: pink;
+  height: 5vmin;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.logo{
+  height: 30vmin;
+  display: flex;
+}
+
+.menubarButton{
+  background-color: antiquewhite;
+  border-color: whitesmoke;
+}
