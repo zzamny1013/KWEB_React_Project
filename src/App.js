@@ -3,6 +3,11 @@ import './App.css';
 import gook1 from './gook1.jpg';
 import logo from './logo.JPG';
 import produce from 'immer';
+import 'bootstrap/dist/css/bootstrap.css'
+import intro from './intro.png';
+import MenuImages from './components/menuImages.js';
+import bookForm from './components/bookForm.js';
+
 
 function reducer(state, action){
   switch(action.type){
@@ -17,7 +22,6 @@ function reducer(state, action){
     case 'MENU':
       console.log(state.menuv);
       return produce(state, draft=>{
-        
         draft.introducev = false;
         draft.menuv = true;
         draft.bookv = false;
@@ -55,17 +59,28 @@ function App(){
   });
 
   return(
-    <div>
+    <div className='container'>
       <img className='logo' src={logo} alt='logo'/>
-      <div className='menubar'>
-        <button className='menubarButton' onClick={()=>{dispatch({ type: 'INTRODUCE'})}}>소개</button>
-        <button className='menubarButton' onClick={()=>{dispatch({ type: 'MENU'})}}>메뉴</button>
-        <button className='menubarButton' onClick={()=>{dispatch({ type: 'BOOK'})}}>예약</button>
-        <button className='menubarButton' onClick={()=>{dispatch({ type: 'PROMOTION'})}}>프로모션</button>
+      <div>
+        <nav className="navbar navbar-expand-lg navbar-warning bg-warning">
+          <a className="navbar-brand" href="#" onClick={()=>{dispatch({ type: 'INTRODUCE'})}}>청석골</a>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div className="navbar-nav">
+          <a className="nav-item nav-link active" href="#" onClick={()=>{dispatch({ type: 'INTRODUCE'})}}>소개 <span class="sr-only">(current)</span></a>
+          <a className="nav-item nav-link" href="#" onClick={()=>{dispatch({ type: 'MENU'})}}> 메뉴</a>
+          <a className="nav-item nav-link" href="#" onClick={()=>{dispatch({ type: 'BOOK'})}}>예약</a>
+          <a className="nav-item nav-link" href="#" onClick={()=>{dispatch({ type: 'PROMOTION'})}}>프로모션</a>
+          </div>
+          </div>
+          </nav>
+
       </div>
-      {state.introducev && <img src='./intro.jpg' alt='intro'/>}
-      {state.menuv && <img src='./menu.jpg' alt='menu'/>}
-      {state.bookv && <img src='./book.jpg' alt='book'/>}
+      {state.introducev && <img src={intro} alt='intro' className="img-thumbnail"/>}
+      {state.menuv && <MenuImages></MenuImages>}
+      {state.bookv && <bookForm></bookForm>}
       {state.promotionv && <img src='./promotion.jpg' alt='promotion'/>}
 
     </div>
