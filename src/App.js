@@ -1,7 +1,9 @@
 import React, { useReducer } from 'react';
 import './App.css';
 import gook1 from './gook1.jpg';
-import logo from './logo.JPG';
+import logo from './logo.png';
+import logoleft from './logoleft.png';
+import logoright from './logoright.png';
 import produce from 'immer';
 import 'bootstrap/dist/css/bootstrap.css'
 import intro from './intro.png';
@@ -60,7 +62,7 @@ function App(){
 
   return(
     <div className='container'>
-      <img className='logo' src={logo} alt='logo'/>
+      <div className='menubar'><img className='logo' src={logoleft} alt='logoleft'/><img className='logo' src={logo} alt='logo'/><img className='logo' src={logoright} alt='logoright'/></div>
       <div>
         <nav className="navbar navbar-expand-lg navbar-warning bg-warning">
           <a className="navbar-brand" href="#" onClick={()=>{dispatch({ type: 'INTRODUCE'})}}>청석골</a>
